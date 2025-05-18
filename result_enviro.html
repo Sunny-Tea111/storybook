@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>你的冒險故事</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        function showStory() {
+            const container = document.getElementById("story");
+            for (let i = 0; i < 10; i++) {
+                const ans = localStorage.getItem("q" + i);
+                const p = document.createElement("p");
+                p.textContent = "第 " + (i+1) + " 頁：你回答的是「" + ans + "」";
+                container.appendChild(p);
+            }
+        }
+    </script>
+</head>
+<body onload="showStory()">
+    <h1>你的繪本完成了！</h1>
+    <div id="story"></div>
+</body>
+</html>

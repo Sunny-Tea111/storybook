@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>環保小勇士｜故事互動</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        let current = 0;
+        const questions = [
+            "你叫什麼名字？",
+            "你今天來到哪裡？",
+            "你看到什麼垃圾？",
+            "你決定怎麼清理？",
+            "你遇到誰一起幫忙？",
+            "清理過後發生什麼改變？",
+            "你找到飲水機了嗎？在哪裡？",
+            "你看到受困的海龜嗎？你怎麼做？",
+            "最後你學到了什麼？",
+            "你想對其他小朋友說什麼？"
+        ];
+        function next() {
+            if (current < questions.length) {
+                const answer = document.getElementById("answer").value;
+                localStorage.setItem("q" + current, answer);
+                current++;
+                if (current < questions.length) {
+                    document.getElementById("question").textContent = questions[current];
+                    document.getElementById("answer").value = "";
+                } else {
+                    window.location.href = "result_enviro.html";
+                }
+            }
+        }
+        window.onload = () => {
+            document.getElementById("question").textContent = questions[current];
+        };
+    </script>
+</head>
+<body>
+    <h2 id="question">Loading...</h2>
+    <input type="text" id="answer">
+    <button onclick="next()">下一題</button>
+</body>
+</html>

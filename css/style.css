@@ -1,0 +1,4 @@
+body { font-family: sans-serif; padding: 20px; }
+.grid { display: flex; gap: 20px; }
+.grid a { text-align: center; }
+.grid img { width: 150px; height: auto; border-radius: 8px; }
