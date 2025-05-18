@@ -1,1 +1,113 @@
-<!-- Example result page HTML -->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>環保小勇士繪本</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      background-color: #e0f7fa;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .storybook {
+      background: #fff;
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .story-page {
+      min-height: 300px;
+      font-size: 20px;
+      padding: 16px;
+    }
+
+    .controls {
+      margin-top: 24px;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      margin: 0 12px;
+      font-size: 16px;
+      border: none;
+      background: #00796b;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background: #004d40;
+    }
+
+    #page-indicator {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="storybook">
+    <h2>《環保小勇士的冒險》</h2>
+    <div id="story-page" class="story-page">
+      <!-- 故事內容會顯示在這 -->
+    </div>
+    <div class="controls">
+      <button onclick="prevPage()">← 上一頁</button>
+      <span id="page-indicator">第 1 頁 / 10 頁</span>
+      <button onclick="nextPage()">下一頁 →</button>
+    </div>
+  </div>
+
+  <script>
+    const answers = JSON.parse(localStorage.getItem("answers") || "[]");
+
+    const storyPages = [
+      `從前從前，有一位勇敢的小勇士，名字叫做 <strong>${answers[0]}</strong>。`,
+      `他最喜歡的顏色是 <strong>${answers[1]}</strong>，所以總是穿著這種顏色的戰衣，守護著 <strong>${answers[2]}</strong>。`,
+      `他的好朋友是一隻可愛的 <strong>${answers[3]}</strong>，常常陪他一起冒險。`,
+      `有一天，他發現 <strong>${answers[2]}</strong> 出現了危機，竟然是 <strong>${answers[6]}</strong> 正在污染整個地區！`,
+      `小勇士立刻發動他的超能力 —— <strong>${answers[4]}</strong>，開始拯救環境。`,
+      `他與 <strong>${answers[7]}</strong> 一起合作，展開一場大冒險。`,
+      `他們使用 <strong>${answers[5]}</strong> 的方法，一點一滴清除汙染。`,
+      `途中他們發現 <strong>${answers[8]}</strong> 是整起事件的關鍵！`,
+      `最後，小勇士靠著大家的力量，成功 <strong>${answers[9]}</strong>，讓 <strong>${answers[2]}</strong> 回復美麗樣貌。`,
+      `從此之後，小勇士繼續守護地球，也鼓勵每一個人成為下一位環保小勇士！`,
+    ];
+
+    let currentPage = 0;
+
+    function showPage(index) {
+      const page = document.getElementById("story-page");
+      const indicator = document.getElementById("page-indicator");
+      if (index >= 0 && index < storyPages.length) {
+        page.innerHTML = storyPages[index];
+        indicator.textContent = `第 ${index + 1} 頁 / ${storyPages.length} 頁`;
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < storyPages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
+    // 初始顯示第 1 頁
+    showPage(currentPage);
+  </script>
+</body>
+</html>
