@@ -1,1 +1,80 @@
-<!-- Example story page HTML -->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>最終故事</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f8ff;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      color: #2a4d69;
+    }
+    .page {
+      margin-bottom: 30px;
+    }
+    .page img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 15px auto;
+    }
+    .page p {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>你的專屬冒險故事</h1>
+    <div id="storyContainer"></div>
+  </div>
+
+  <script>
+    const answers = JSON.parse(localStorage.getItem("answers")) || [];
+    const storyContainer = document.getElementById("storyContainer");
+
+    const pages = [
+      `在某個陽光明媚的早晨，小勇士 ${answers[0] || "小明"} 決定展開一場充滿意義的環保冒險。`,
+      `${answers[0] || "小明"} 走進了 ${answers[1] || "城市公園"}，發現地上有很多垃圾。他決定使用 ${answers[2] || "神奇夾子"} 來幫助撿垃圾。`,
+      `他沿途遇見了 ${answers[3] || "一隻海龜"}，牠因為塑膠袋受困，${answers[0] || "小明"} 立刻幫忙清理。`,
+      `在 ${answers[4] || "回收站"}，他學會了怎麼分類垃圾，並教給其他小朋友。`,
+      `午餐時，他選擇了 ${answers[5] || "在地蔬食便當"}，減少碳足跡。`,
+      `午後，他發現一個 ${answers[6] || "空的塑膠瓶"} 被風吹進水溝，他立刻撿起來。`,
+      `在回家的路上，他在 ${answers[7] || "飲水機"} 補充水分，而不是買瓶裝水。`,
+      `他想著：「如果大家都能做這些事，地球一定會更美好！」`,
+      `他將今天的經驗寫進了 ${answers[8] || "環保日記"}，並決定每天都做一件有益環境的事。`,
+      `這天結束時，${answers[0] || "小明"} 看著星空，心想：「我真的可以改變世界！」`
+    ];
+
+    pages.forEach((text, index) => {
+      const pageDiv = document.createElement("div");
+      pageDiv.className = "page";
+      const para = document.createElement("p");
+      para.textContent = text;
+      const img = document.createElement("img");
+      img.src = `images/page${index + 1}.jpg`;  // Assume images are named page1.jpg, page2.jpg, etc.
+      pageDiv.appendChild(para);
+      pageDiv.appendChild(img);
+      storyContainer.appendChild(pageDiv);
+    });
+  </script>
+</body>
+</html>
